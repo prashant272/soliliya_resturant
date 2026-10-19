@@ -82,12 +82,12 @@ const Navbar = ({ onOpenAuth }) => {
                     <a
                         href="#home"
                         onClick={(e) => handleNavClick(e, 'home')}
-                        className="flex items-center gap-1 group py-1"
+                        className="flex items-center gap-1 group py-1 mr-3 md:mr-6 lg:mr-8 shrink-0"
                     >
                         <img
                             src="/images/wilma-logo-clean.png"
                             alt="Restavracija Wilma Logo"
-                            className="h-12 sm:h-14 md:h-[58px] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                            className="h-10 sm:h-12 md:h-[48px] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                         />
                     </a>
 
