@@ -15,6 +15,10 @@ const uploadWithLogging = (req, res, next) => {
         if (err) {
             console.error("Category Upload Warning:", err.message);
         }
+        if (req.file && process.env.R2_PUBLIC_URL && req.file.key) {
+            const publicUrl = process.env.R2_PUBLIC_URL.replace(/\/$/, '');
+            req.file.location = `${publicUrl}/${req.file.key}`;
+        }
         next();
     });
 };

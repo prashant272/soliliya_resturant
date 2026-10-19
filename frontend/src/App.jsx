@@ -19,7 +19,6 @@ import MyOrders from './pages/MyOrders';
 import ScrollToTop from './components/ScrollToTop';
 import CartDrawer from './components/CartDrawer';
 import AuthModal from './components/AuthModal';
-import ComingSoonPopup from './components/ComingSoonPopup';
 import LiveChatWidget from './components/LiveChatWidget';
 import Login from './pages/Login';
 import Register from './pages/Register';
@@ -61,7 +60,6 @@ function App() {
                 <Navbar onOpenAuth={() => setIsAuthModalOpen(true)} />
                 <CartDrawer />
                 <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
-                <ComingSoonPopup />
                 <LiveChatWidget />
 
                 <main className="flex-grow">

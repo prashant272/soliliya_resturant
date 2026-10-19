@@ -22,7 +22,8 @@ exports.createCategory = async (req, res) => {
         let image = req.body.image;
 
         if (req.file) {
-            image = req.file.location; // S3 URL
+            const publicUrl = process.env.R2_PUBLIC_URL ? process.env.R2_PUBLIC_URL.replace(/\/$/, '') : '';
+            image = (publicUrl && req.file.key) ? `${publicUrl}/${req.file.key}` : req.file.location;
         }
 
         if (!name) {
@@ -64,7 +65,8 @@ exports.updateCategory = async (req, res) => {
         }
 
         if (req.file) {
-            category.image = req.file.location;
+            const publicUrl = process.env.R2_PUBLIC_URL ? process.env.R2_PUBLIC_URL.replace(/\/$/, '') : '';
+            category.image = (publicUrl && req.file.key) ? `${publicUrl}/${req.file.key}` : req.file.location;
         } else if (req.body.image) {
             category.image = req.body.image;
         }

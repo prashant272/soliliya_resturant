@@ -20,7 +20,8 @@ exports.createMenu = async (req, res) => {
         let image = req.body.image;
 
         if (req.file) {
-            image = req.file.location; // S3 URL
+            const publicUrl = process.env.R2_PUBLIC_URL ? process.env.R2_PUBLIC_URL.replace(/\/$/, '') : '';
+            image = (publicUrl && req.file.key) ? `${publicUrl}/${req.file.key}` : req.file.location;
         }
 
         if (!name || !category) {
@@ -59,7 +60,6 @@ exports.createMenu = async (req, res) => {
 };
 
 // Update menu item
-// Update menu item
 exports.updateMenu = async (req, res) => {
     try {
         console.log("Update Menu Request Body:", req.body);
@@ -74,7 +74,8 @@ exports.updateMenu = async (req, res) => {
         const updateData = { ...req.body };
 
         if (req.file) {
-            updateData.image = req.file.location;
+            const publicUrl = process.env.R2_PUBLIC_URL ? process.env.R2_PUBLIC_URL.replace(/\/$/, '') : '';
+            updateData.image = (publicUrl && req.file.key) ? `${publicUrl}/${req.file.key}` : req.file.location;
         }
 
         // Parse variants if they are sent as string (Multipart/form-data)

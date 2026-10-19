@@ -15,7 +15,7 @@ exports.loginAdmin = async (req, res) => {
     const { email, password } = req.body;
 
     // Hardcoded check for admin@2026
-    if (email === 'admin@biryaniyoyo.com' && password === 'admin@2026') {
+    if (email === 'admin@wilma.com' && password === 'admin@2026') {
         // Create a dummy ID for the token since we are bypassing DB for now
         // OR find the actual admin in DB if exists. 
         // For simplicity requested by user:

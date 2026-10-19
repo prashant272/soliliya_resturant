@@ -14,6 +14,10 @@ const uploadWithLogging = (req, res, next) => {
             console.error("Upload Error:", err);
             return res.status(400).json({ message: "Image upload failed", error: err.message });
         }
+        if (req.file && process.env.R2_PUBLIC_URL && req.file.key) {
+            const publicUrl = process.env.R2_PUBLIC_URL.replace(/\/$/, '');
+            req.file.location = `${publicUrl}/${req.file.key}`;
+        }
         next();
     });
 };
