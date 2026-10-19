@@ -154,41 +154,25 @@ const getEffectiveCategory = (item, adminCatNames) => {
     return matched ? matched : 'Other';
 };
 
-const MenuItemCard = ({ item, displayCategory, onAdd, isAdded }) => {
+const MenuItemCard = ({ item, displayCategory }) => {
     const hasVariants = item.variants && item.variants.length > 0;
     const [selectedVariant, setSelectedVariant] = useState(hasVariants ? item.variants[0] : null);
-    const [quantity, setQuantity] = useState(1);
 
     const currentPrice = selectedVariant
         ? selectedVariant.price
         : (item.price || (hasVariants ? item.variants[0].price : 0));
 
-    const handleIncrement = (e) => {
-        e.stopPropagation();
-        setQuantity(prev => Math.min(prev + 1, 20));
-    };
-
-    const handleDecrement = (e) => {
-        e.stopPropagation();
-        setQuantity(prev => Math.max(prev - 1, 1));
-    };
-
-    const handleAddToCart = () => {
-        onAdd(item, selectedVariant, quantity);
-        setQuantity(1);
-    };
-
     return (
-        <div className="bg-white/95 backdrop-blur-md rounded-3xl overflow-hidden border border-[#ede8dd] shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1.5">
+        <div className="bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl overflow-hidden border border-[#ede8dd] shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between group hover:-translate-y-1">
             
             {/* Top section: Image & Content */}
             <div>
                 {/* Image Container with Badges */}
-                <div className="relative h-52 sm:h-56 w-full overflow-hidden bg-gray-100">
+                <div className="relative h-48 sm:h-52 md:h-56 w-full overflow-hidden bg-gray-100">
                     <img
                         src={item.image || '/images/food.jpeg'}
                         alt={item.name}
-                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-108"
+                        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                         onError={(e) => {
                             e.target.onerror = null;
                             e.target.src = '/images/food.jpeg';
@@ -200,20 +184,20 @@ const MenuItemCard = ({ item, displayCategory, onAdd, isAdded }) => {
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20 pointer-events-none" />
 
                     {/* Category Pill (Top Left) */}
-                    <span className="absolute top-3.5 left-3.5 bg-[#142218]/90 backdrop-blur-md text-[#d4af37] text-[10px] font-bold uppercase tracking-wider px-3 py-1 rounded-full border border-[#d4af37]/40 shadow-sm">
+                    <span className="absolute top-3 left-3 sm:top-3.5 sm:left-3.5 bg-[#142218]/90 backdrop-blur-md text-[#d4af37] text-[10px] font-bold uppercase tracking-wider px-2.5 sm:px-3 py-1 rounded-full border border-[#d4af37]/40 shadow-xs">
                         {displayCategory || item.category || 'Specialty'}
                     </span>
 
                     {/* Fresh Today or Chef Special (Top Right) */}
                     {item.today && (
-                        <span className="absolute top-3.5 right-3.5 bg-emerald-700/90 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm flex items-center gap-1 border border-emerald-400/40">
+                        <span className="absolute top-3 right-3 sm:top-3.5 sm:right-3.5 bg-emerald-700/90 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs flex items-center gap-1 border border-emerald-400/40">
                             <Sparkles size={11} className="text-yellow-300" />
                             <span>Fresh Today</span>
                         </span>
                     )}
 
                     {item.isSpecial && !item.today && (
-                        <span className="absolute top-3.5 right-3.5 bg-[#c9a227]/95 backdrop-blur-md text-[#142218] text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full shadow-sm flex items-center gap-1 border border-yellow-200">
+                        <span className="absolute top-3 right-3 sm:top-3.5 sm:right-3.5 bg-[#c9a227]/95 backdrop-blur-md text-[#142218] text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-full shadow-xs flex items-center gap-1 border border-yellow-200">
                             <Award size={11} />
                             <span>Chef's Choice</span>
                         </span>
@@ -221,19 +205,19 @@ const MenuItemCard = ({ item, displayCategory, onAdd, isAdded }) => {
 
                     {/* Dietary indicator icon on bottom left of image */}
                     {item.dietary === 'vegetarian' && (
-                        <span className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-xs text-emerald-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+                        <span className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-xs text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-xs">
                             <Leaf size={11} className="text-emerald-600" /> Vegetarian
                         </span>
                     )}
                     {item.dietary === 'vegan' && (
-                        <span className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-xs text-emerald-800 text-[10px] font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-sm">
+                        <span className="absolute bottom-3 left-3 bg-white/95 backdrop-blur-xs text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full flex items-center gap-1 shadow-xs">
                             <Leaf size={11} className="text-emerald-600" /> Vegan
                         </span>
                     )}
 
                     {/* Price Tag (Bottom Right overlay) */}
-                    <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-xs text-[#2d5a27] font-black text-base px-3 py-1 rounded-xl shadow-md border border-gray-100 flex items-center gap-1">
-                        <span>€</span>
+                    <div className="absolute bottom-3 right-3 bg-white/95 backdrop-blur-xs text-[#2d5a27] font-black text-sm sm:text-base px-2.5 sm:px-3 py-1 rounded-xl shadow-md border border-gray-100 flex items-center gap-0.5">
+                        <span className="text-xs sm:text-sm">€</span>
                         <span>{Number(currentPrice).toFixed(2)}</span>
                     </div>
 
@@ -248,20 +232,20 @@ const MenuItemCard = ({ item, displayCategory, onAdd, isAdded }) => {
                 </div>
 
                 {/* Content Details */}
-                <div className="p-5 sm:p-6">
-                    <h3 className="font-serif font-bold text-xl text-[#14331e] group-hover:text-[#2d5a27] transition-colors leading-snug line-clamp-1 mb-2">
+                <div className="p-4 sm:p-5 md:p-6">
+                    <h3 className="font-serif font-bold text-lg sm:text-xl text-[#14331e] group-hover:text-[#2d5a27] transition-colors leading-snug line-clamp-1 mb-1.5">
                         {item.name}
                     </h3>
 
-                    <p className="text-xs sm:text-sm text-gray-600 line-clamp-2 leading-relaxed min-h-[38px] mb-4">
+                    <p className="text-xs sm:text-sm text-gray-600 line-clamp-2 leading-relaxed mb-3">
                         {item.description || 'Prepared fresh daily with authentic regional recipes and premium local ingredients.'}
                     </p>
 
                     {/* Variants Selector (if dish has multiple options) */}
                     {hasVariants && item.variants.length > 1 && (
-                        <div className="mb-4 pt-1">
+                        <div className="pt-1">
                             <label className="block text-[10px] font-bold uppercase tracking-wider text-gray-400 mb-1.5">
-                                Select Portion / Variant:
+                                Portions / Options:
                             </label>
                             <div className="flex flex-wrap gap-1.5">
                                 {item.variants.map((v) => (
@@ -269,9 +253,9 @@ const MenuItemCard = ({ item, displayCategory, onAdd, isAdded }) => {
                                         key={v.name}
                                         type="button"
                                         onClick={() => setSelectedVariant(v)}
-                                        className={`px-3 py-1 text-xs font-bold rounded-xl border transition-all cursor-pointer ${
+                                        className={`px-2.5 py-1 text-[11px] sm:text-xs font-bold rounded-xl border transition-all cursor-pointer ${
                                             selectedVariant?.name === v.name
-                                                ? 'bg-[#142218] text-[#d4af37] border-[#d4af37]/60 shadow-xs ring-1 ring-[#d4af37]/40'
+                                                ? 'bg-[#142218] text-[#d4af37] border-[#d4af37]/60 shadow-2xs'
                                                 : 'bg-gray-50 text-gray-700 border-gray-200 hover:border-gray-300'
                                         }`}
                                     >
@@ -283,57 +267,6 @@ const MenuItemCard = ({ item, displayCategory, onAdd, isAdded }) => {
                         </div>
                     )}
                 </div>
-            </div>
-
-            {/* Bottom Actions: Quantity & Full-Width Mustard-Gold Add to Order Button */}
-            <div className="p-5 sm:p-6 pt-0 border-t border-gray-100 flex items-center gap-2.5 mt-auto">
-                {/* Quantity Control */}
-                <div className="inline-flex items-center bg-gray-100/90 rounded-2xl p-1 border border-gray-200">
-                    <button
-                        type="button"
-                        onClick={handleDecrement}
-                        disabled={quantity <= 1 || item.available === false}
-                        className="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-black rounded-xl hover:bg-white transition cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
-                        aria-label="Decrease quantity"
-                    >
-                        <Minus size={13} />
-                    </button>
-                    <span className="w-7 text-center text-xs font-bold text-[#1c241b]">
-                        {quantity}
-                    </span>
-                    <button
-                        type="button"
-                        onClick={handleIncrement}
-                        disabled={quantity >= 20 || item.available === false}
-                        className="w-8 h-8 flex items-center justify-center text-gray-600 hover:text-black rounded-xl hover:bg-white transition cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
-                        aria-label="Increase quantity"
-                    >
-                        <Plus size={13} />
-                    </button>
-                </div>
-
-                {/* Mustard-Gold Add to Order Button */}
-                <button
-                    onClick={handleAddToCart}
-                    disabled={item.available === false}
-                    className={`flex-1 py-3 px-3 rounded-2xl text-xs font-bold uppercase tracking-wider transition-all duration-200 flex items-center justify-center gap-1.5 cursor-pointer shadow-sm active:scale-95 ${
-                        isAdded
-                            ? 'bg-[#2d5a27] text-white shadow-md'
-                            : 'bg-[#c9a227] hover:bg-yellow-500 text-[#1c241b] hover:shadow-md'
-                    } disabled:opacity-50 disabled:cursor-not-allowed`}
-                >
-                    {isAdded ? (
-                        <>
-                            <Check size={15} />
-                            <span>Added to Order ✓</span>
-                        </>
-                    ) : (
-                        <>
-                            <ShoppingBag size={14} />
-                            <span>Add {quantity > 1 ? `(${quantity}) • €${(currentPrice * quantity).toFixed(2)}` : 'to Order'}</span>
-                        </>
-                    )}
-                </button>
             </div>
 
         </div>
@@ -637,7 +570,7 @@ const Menu = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* SEARCH & FILTERS CARD */}
-                <div id="menu-catalog-section" className="bg-white/95 backdrop-blur-md rounded-3xl p-5 sm:p-7 shadow-sm border border-[#ede8dd] mb-9 space-y-4 scroll-mt-24">
+                <div id="menu-catalog-section" className="bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-7 shadow-xs border border-[#ede8dd] mb-6 sm:mb-9 space-y-3.5 sm:space-y-4 scroll-mt-24">
                     
                     {/* Top Row: Search Input & Sort Dropdown */}
                     <div className="flex flex-col sm:flex-row gap-3.5 items-center justify-between">
@@ -819,27 +752,24 @@ const Menu = () => {
                         </button>
                     </div>
                 ) : (
-                    /* 3-COLUMN DESKTOP MENU GRID */
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 sm:gap-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
                         {filteredAndSortedItems.map((item) => (
                             <MenuItemCard
                                 key={item._id}
                                 item={item}
                                 displayCategory={getEffectiveCategory(item, adminCategoryNames)}
-                                onAdd={handleAdd}
-                                isAdded={addedId === item._id}
                             />
                         ))}
                     </div>
                 )}
 
                 {/* TABLE RESERVATION PROMO BANNER */}
-                <div className="mt-20 bg-gradient-to-r from-[#142218] via-[#1c3a23] to-[#142218] rounded-3xl p-7 sm:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl border border-[#d4af37]/30">
+                <div className="mt-12 sm:mt-20 bg-gradient-to-r from-[#142218] via-[#1c3a23] to-[#142218] rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 text-white flex flex-col md:flex-row items-center justify-between gap-5 sm:gap-6 shadow-xl border border-[#d4af37]/30">
                     <div className="space-y-2 text-center md:text-left">
                         <span className="text-[#d4af37] text-xs font-bold uppercase tracking-widest block">
                             LIVE TABLE RESERVATION
                         </span>
-                        <h3 className="font-serif text-2xl sm:text-3xl font-black tracking-tight">
+                        <h3 className="font-serif text-xl sm:text-2xl md:text-3xl font-black tracking-tight">
                             Prefer to dine in at our restaurant?
                         </h3>
                         <p className="text-xs sm:text-sm text-gray-300 max-w-xl leading-relaxed">
@@ -848,7 +778,7 @@ const Menu = () => {
                     </div>
                     <Link
                         to="/dashboard?tab=bookings"
-                        className="bg-[#c9a227] hover:bg-yellow-500 text-[#1c241b] font-bold px-7 py-4 rounded-2xl text-xs uppercase tracking-wider transition-all shadow-md flex items-center gap-2 cursor-pointer whitespace-nowrap hover:scale-105 active:scale-95"
+                        className="w-full sm:w-auto justify-center bg-[#c9a227] hover:bg-yellow-500 text-[#1c241b] font-bold px-6 py-3.5 sm:px-7 sm:py-4 rounded-xl sm:rounded-2xl text-xs uppercase tracking-wider transition-all shadow-md flex items-center gap-2 cursor-pointer whitespace-nowrap hover:scale-105 active:scale-95 text-center"
                     >
                         <span>Book a Table Now</span>
                         <ArrowRight size={15} />

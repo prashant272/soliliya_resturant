@@ -136,8 +136,8 @@ const MenuSection = () => {
                     </div>
                 </div>
 
-                {/* 3 Columns x 2 Rows Food Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7 lg:gap-8">
+                {/* 2 Columns on Mobile, 2 on Tablet, 3 on Desktop */}
+                <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
                     {items.slice(0, 6).map((item, index) => (
                         <div 
                             key={item._id || index} 
@@ -146,15 +146,15 @@ const MenuSection = () => {
                             title={`View ${item.name} in Menu`}
                         >
                             {/* Dish / Category Name directly above image */}
-                            <h4 className="text-center font-bold text-sm sm:text-base text-[#14331e] mb-2 sm:mb-2.5 transition-colors group-hover:text-[#2d5a27] line-clamp-1 flex items-center justify-center gap-1.5">
+                            <h4 className="text-center font-bold text-xs sm:text-base text-[#14331e] mb-1.5 sm:mb-2.5 transition-colors group-hover:text-[#2d5a27] line-clamp-1 flex items-center justify-center gap-1 sm:gap-1.5">
                                 <span>{item.name}</span>
-                                <span className="text-xs text-[#c9a227] opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-4px] group-hover:translate-x-0">
+                                <span className="text-[10px] sm:text-xs text-[#c9a227] opacity-0 group-hover:opacity-100 transition-opacity transform translate-x-[-4px] group-hover:translate-x-0">
                                     →
                                 </span>
                             </h4>
 
                             {/* Food Image Card */}
-                            <div className="overflow-hidden rounded-2xl bg-white border border-[#eae3d5] shadow-xs group-hover:shadow-xl transition-all duration-300 aspect-[16/11] relative group-hover:-translate-y-1">
+                            <div className="overflow-hidden rounded-xl sm:rounded-2xl bg-white border border-[#eae3d5] shadow-xs group-hover:shadow-xl transition-all duration-300 aspect-[16/11] relative group-hover:-translate-y-1">
                                 <img
                                     src={getImageUrl(item.image, item.fallback)}
                                     alt={item.name}
@@ -168,7 +168,7 @@ const MenuSection = () => {
 
                                 {/* Subtle hover badge */}
                                 <div className="absolute inset-0 bg-black/30 backdrop-blur-2xs opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
-                                    <span className="bg-white/95 text-[#142218] text-xs font-black uppercase tracking-wider px-4 py-2 rounded-full shadow-lg border border-gray-100 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                                    <span className="bg-white/95 text-[#142218] text-[10px] sm:text-xs font-black uppercase tracking-wider px-2.5 py-1 sm:px-4 sm:py-2 rounded-full shadow-lg border border-gray-100 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                                         View in Menu →
                                     </span>
                                 </div>
