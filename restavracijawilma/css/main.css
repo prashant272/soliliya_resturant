@@ -1,0 +1,691 @@
+   /* ================= GLOBAL ================= */
+   body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: #fdfbf7;
+    color: #1e2a1e;
+    overflow-x: hidden;
+  }
+  
+  .font-heading { font-family: 'Cinzel', serif; }
+  
+  /* ============================================================
+     ✨ HERO SECTION — FULL ATTRACTIVE + 3D RESTAURANT LOOK
+     ============================================================ */
+  .bg-hero-pattern {
+    background:
+      linear-gradient(135deg, rgba(20,30,20,0.62) 0%, rgba(30,42,30,0.55) 50%, rgba(20,30,20,0.72) 100%),
+      url(images/lighting-for-restaurnats2.webp);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    perspective: 1400px;
+    overflow: hidden;
+    min-height: 72vh; /* 👈 pehle 95vh tha, ab 72vh */
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+  
+  /* Animated gold + green glow blobs */
+  .bg-hero-pattern::before {
+    content: '';
+    position: absolute;
+    top: -30%; left: -15%;
+    width: 85%; height: 130%;
+    background: radial-gradient(circle, rgba(201,162,39,0.30) 0%, transparent 65%);
+    border-radius: 50%;
+    animation: floatGlow 9s ease-in-out infinite;
+    pointer-events: none;
+    filter: blur(20px);
+  }
+  .bg-hero-pattern::after {
+    content: '';
+    position: absolute;
+    bottom: -30%; right: -15%;
+    width: 75%; height: 110%;
+    background: radial-gradient(circle, rgba(74,124,68,0.35) 0%, transparent 65%);
+    border-radius: 50%;
+    animation: floatGlow 12s ease-in-out infinite reverse;
+    pointer-events: none;
+    filter: blur(20px);
+  }
+  
+  /* Rotating conic light beam */
+  #home > div::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    width: 200%; height: 200%;
+    background: conic-gradient(from 0deg,
+      transparent 0deg,
+      rgba(201,162,39,0.08) 60deg,
+      transparent 120deg,
+      rgba(201,162,39,0.06) 240deg,
+      transparent 300deg);
+    transform: translate(-50%, -50%);
+    animation: rotateBeam 25s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+  }
+  
+  @keyframes floatGlow {
+    0%,100% { transform: translate(0,0) scale(1); }
+    50%     { transform: translate(5%,5%) scale(1.12); }
+  }
+  @keyframes rotateBeam {
+    from { transform: translate(-50%,-50%) rotate(0deg); }
+    to   { transform: translate(-50%,-50%) rotate(360deg); }
+  }
+  
+  /* Hero content container — floating 3D card */
+  #home .max-w-4xl {
+    position: relative;
+    z-index: 3;
+    padding: 2.25rem 2rem; /* 👈 thoda compact kiya */
+    border-radius: 32px;
+    background: rgba(20, 30, 20, 0.35);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(201, 162, 39, 0.35);
+    box-shadow:
+      0 30px 60px -20px rgba(0,0,0,0.5),
+      0 0 0 1px rgba(255,255,255,0.06) inset,
+      0 0 60px -10px rgba(201,162,39,0.25);
+    transform-style: preserve-3d;
+    transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1),
+                box-shadow 0.7s ease;
+    animation: heroFloat 6s ease-in-out infinite;
+  }
+  
+  @keyframes heroFloat {
+    0%,100% { transform: translateY(0) rotateY(0deg) rotateX(0deg); }
+    50%     { transform: translateY(-10px) rotateY(1.5deg) rotateX(1deg); }
+  }
+  
+  #home .max-w-4xl:hover {
+    transform: translateY(-12px) rotateY(4deg) rotateX(3deg) scale(1.01);
+    box-shadow:
+      0 45px 80px -25px rgba(0,0,0,0.6),
+      0 0 0 1px rgba(255,255,255,0.1) inset,
+      0 0 80px -5px rgba(201,162,39,0.4);
+    animation-play-state: paused;
+  }
+  
+  /* Hero text colors on dark glass */
+  #home h1 {
+    color: #ffffff !important;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.5), 0 1px 0 rgba(0,0,0,0.3);
+    letter-spacing: 0.02em;
+    transform-style: preserve-3d;
+    transition: transform 0.5s ease;
+  }
+  #home .max-w-4xl:hover h1 {
+    transform: translateZ(30px);
+  }
+  
+  #home h1 .text-slovenia-gold {
+    background: linear-gradient(135deg, #ffffff 0%, #ffffff 50%, #ffffff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+    animation: goldShimmer 4s ease-in-out infinite;
+    filter: drop-shadow(0 2px 8px rgba(201,162,39,0.5));
+  }
+  @keyframes goldShimmer {
+    0%,100% { filter: drop-shadow(0 2px 8px rgba(201,162,39,0.5)); }
+    50%     { filter: drop-shadow(0 2px 20px rgba(245,215,110,0.9)); }
+  }
+  
+  #home p.text-gray-200 {
+    color: rgba(255,255,255,0.88) !important;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.4);
+    transition: transform 0.5s ease;
+  }
+  #home .max-w-4xl:hover p.text-gray-200 {
+    transform: translateZ(20px);
+  }
+  
+  /* Location pill on hero */
+  #home .bg-slovenia-gold\/20 {
+    background: rgba(201,162,39,0.15) !important;
+    border: 1px solid rgba(201,162,39,0.55) !important;
+    color: #f5d76e !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 24px -8px rgba(201,162,39,0.4);
+    animation: pillPulse 3s ease-in-out infinite;
+  }
+  @keyframes pillPulse {
+    0%,100% { box-shadow: 0 8px 24px -8px rgba(201,162,39,0.4); }
+    50%     { box-shadow: 0 8px 32px -4px rgba(201,162,39,0.75); }
+  }
+  
+  /* Highlight badge cards — 3D glass with hover lift */
+  #home .bg-slovenia-dark\/60 {
+    background: rgba(255,255,255,0.10) !important;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(201,162,39,0.30) !important;
+    box-shadow: 0 10px 30px -12px rgba(0,0,0,0.4);
+    transition: transform 0.5s cubic-bezier(0.23,1,0.32,1),
+                box-shadow 0.5s ease,
+                background 0.4s ease,
+                border-color 0.4s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  #home .bg-slovenia-dark\/60:hover {
+    transform: translateY(-8px) rotateX(6deg) rotateY(-4deg) scale(1.05);
+    background: rgba(201,162,39,0.18) !important;
+    border-color: rgba(201,162,39,0.8) !important;
+    box-shadow:
+      0 25px 45px -15px rgba(0,0,0,0.5),
+      0 0 40px -8px rgba(201,162,39,0.6);
+  }
+  #home .bg-slovenia-dark\/60 h4 { color: #ffffff !important; }
+  #home .bg-slovenia-dark\/60 p  { color: rgba(255,255,255,0.75) !important; }
+  #home .bg-slovenia-dark\/60 i  {
+    transition: transform 0.5s ease;
+    filter: drop-shadow(0 0 8px rgba(201,162,39,0.5));
+  }
+  #home .bg-slovenia-dark\/60:hover i {
+    transform: scale(1.25) rotate(-8deg);
+  }
+  
+  /* Hero CTA buttons */
+  #home a[href="#booking"],
+  #home a[href="#menu"] {
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.4s cubic-bezier(0.23,1,0.32,1),
+                box-shadow 0.4s ease,
+                background 0.3s ease;
+    transform-style: preserve-3d;
+  }
+  #home a[href="#booking"]:hover {
+    transform: translateY(-5px) translateZ(20px) scale(1.04);
+    box-shadow: 0 22px 40px -12px rgba(201,162,39,0.7),
+                0 0 40px -6px rgba(201,162,39,0.5);
+  }
+  #home a[href="#menu"]:hover {
+    transform: translateY(-5px) translateZ(20px) scale(1.04);
+    background: rgba(255,255,255,0.22) !important;
+    box-shadow: 0 22px 40px -12px rgba(255,255,255,0.3);
+  }
+  
+  /* ================= GLASS CARD ================= */
+  .glass-card {
+    background: rgba(255,255,255,0.82);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(201,162,39,0.22);
+    border-radius: 20px;
+  }
+  
+  /* ================= PRINTABLE PASS ================= */
+  .printable-pass {
+    background: radial-gradient(circle at top right, #fdfbf7, #f4efe6);
+  }
+  
+  /* ============================================================
+     ✨ ALL BUTTONS HOVER (3D)
+     ============================================================ */
+  button,
+  a.btn-gold,
+  a[href^="#booking"],
+  a[href^="tel"],
+  .menu-filter-btn {
+    transition: transform 0.4s cubic-bezier(0.23,1,0.32,1),
+                box-shadow 0.4s ease,
+                background-color 0.3s ease,
+                color 0.3s ease,
+                border-color 0.3s ease;
+    will-change: transform;
+    position: relative;
+    overflow: hidden;
+    transform-style: preserve-3d;
+  }
+  
+  button::after,
+  a.btn-gold::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -75%;
+    width: 50%; height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.5), transparent);
+    transform: skewX(-20deg);
+    transition: left 0.7s ease;
+    pointer-events: none;
+  }
+  button:hover::after,
+  a.btn-gold:hover::after { left: 125%; }
+  
+  button:hover,
+  a.btn-gold:hover,
+  .menu-filter-btn:hover {
+    transform: translateY(-4px) translateZ(15px);
+    box-shadow: 0 18px 32px -12px rgba(201,162,39,0.55);
+  }
+  button:active,
+  a.btn-gold:active { transform: translateY(-1px) scale(0.98); }
+  
+  /* Gold buttons */
+  .btn-gold,
+  button[type="submit"],
+  .bg-slovenia-gold {
+    background: #c9a227 !important;
+    color: #1e2a1e !important;
+    font-weight: 600;
+    box-shadow: 0 4px 14px rgba(201,162,39,0.28);
+  }
+  .btn-gold:hover,
+  button[type="submit"]:hover,
+  .bg-slovenia-gold:hover {
+    background: #e0b833 !important;
+    box-shadow: 0 20px 38px -12px rgba(201,162,39,0.7);
+    transform: translateY(-4px) translateZ(15px) scale(1.02);
+  }
+  
+  /* Green/dark buttons */
+  .bg-slovenia-green:hover {
+    background: #4a7c44 !important;
+    transform: translateY(-4px) translateZ(15px);
+    box-shadow: 0 18px 34px -12px rgba(45,90,39,0.55);
+  }
+  /* .bg-slovenia-dark:hover {
+    background: #000 !important;
+    transform: translateY(-4px) translateZ(15px);
+    box-shadow: 0 18px 34px -12px rgba(0,0,0,0.5);
+  } */
+  
+  /* Phone pill */
+  a[href^="tel"]:hover {
+    border-color: #c9a227 !important;
+    background: #f0f5ee !important;
+    transform: translateY(-3px) translateZ(10px);
+  }
+  
+  /* Filter buttons */
+  .menu-filter-btn { border: 1px solid transparent; }
+  .menu-filter-btn:hover {
+    border-color: #c9a227 !important;
+    background: #fdfbf7 !important;
+    color: #2d5a27 !important;
+    transform: translateY(-3px) translateZ(10px);
+  }
+  
+  /* ============================================================
+     ✨ ALL IMAGES HOVER (3D)
+     ============================================================ */
+  img {
+    transition: transform 0.6s cubic-bezier(0.23,1,0.32,1),
+                box-shadow 0.5s ease,
+                filter 0.5s ease;
+    will-change: transform;
+    border-radius: inherit;
+  }
+  
+  section img:not([alt*="logo" i]):not([alt*="Logo"]):hover {
+    transform: perspective(900px) rotateY(-4deg) rotateX(3deg) scale(1.07);
+    box-shadow: 0 28px 50px -18px rgba(0,0,0,0.35),
+                0 0 40px -10px rgba(201,162,39,0.3);
+    filter: brightness(1.08) saturate(1.12);
+    z-index: 2;
+    position: relative;
+  }
+  
+  #about .grid img:hover,
+  #gallery img:hover {
+    transform: perspective(900px) rotateY(-5deg) rotateX(3deg) scale(1.08);
+    box-shadow: 0 30px 55px -18px rgba(45,90,39,0.35);
+    filter: brightness(1.08) saturate(1.15);
+  }
+  
+  /* ============================================================
+     ✨ CARD CONTAINERS HOVER (3D)
+     ============================================================ */
+  .menu-card {
+    background: #ffffff !important;
+    border: 1px solid #ede8dd !important;
+    transition: transform 0.5s cubic-bezier(0.23,1,0.32,1),
+                box-shadow 0.5s ease,
+                border-color 0.3s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .menu-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201,162,39,0.08), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+  }
+  .menu-card:hover::before { opacity: 1; }
+  .menu-card:hover {
+    transform: translateY(-10px) rotateX(3deg) rotateY(2deg) scale(1.03);
+    box-shadow: 0 30px 50px -18px rgba(45,90,39,0.28),
+                0 0 30px -8px rgba(201,162,39,0.25);
+    border-color: #c9a227 !important;
+  }
+  .menu-card h3 { color: #1e2a1e; transition: color 0.3s ease; }
+  .menu-card:hover h3 { color: #c9a227; }
+  .menu-card p  { color: #5a6b5a !important; }
+  .menu-card .text-slovenia-sage { color: #8fa382 !important; }
+  .menu-card .bg-slovenia-green\/40 {
+    background: #f0f5ee !important;
+    color: #2d5a27 !important;
+  }
+  
+  /* Booking form card */
+  #booking .bg-white.rounded-3xl {
+    transition: transform 0.5s cubic-bezier(0.23,1,0.32,1),
+                box-shadow 0.5s ease;
+  }
+  #booking .bg-white.rounded-3xl:hover {
+    transform: translateY(-6px) translateZ(20px);
+    box-shadow: 0 35px 65px -22px rgba(45,90,39,0.28),
+                0 0 40px -10px rgba(201,162,39,0.2);
+  }
+  
+  /* Contact cards */
+  #contact .bg-slovenia-cream,
+  #contact .bg-white.rounded-3xl,
+  #contact .rounded-3xl {
+    transition: transform 0.5s cubic-bezier(0.23,1,0.32,1),
+                box-shadow 0.5s ease,
+                border-color 0.3s ease;
+  }
+  #contact .bg-slovenia-cream:hover,
+  #contact .bg-white.rounded-3xl:hover {
+    transform: translateY(-6px) translateZ(20px) rotateX(2deg);
+    box-shadow: 0 30px 55px -20px rgba(45,90,39,0.25);
+    border-color: rgba(201,162,39,0.6);
+  }
+  
+  /* About quote card */
+  #about .bg-slovenia-green {
+    transition: transform 0.5s ease, box-shadow 0.5s ease, background 0.3s ease;
+  }
+  #about .bg-slovenia-green:hover {
+    transform: translateY(-6px) rotate(-1deg) translateZ(20px);
+    box-shadow: 0 30px 55px -20px rgba(45,90,39,0.5),
+                0 0 40px -10px rgba(201,162,39,0.3);
+    background: #356633 !important;
+  }
+  
+  /* Header */
+  header a { transition: all 0.3s ease; }
+  header a:hover { color: #c9a227 !important; }
+  
+  /* Booking radio label cards */
+  #bookingForm label {
+    transition: transform 0.35s ease, box-shadow 0.35s ease,
+                border-color 0.3s ease, background 0.3s ease;
+  }
+  #bookingForm label:hover {
+    transform: translateY(-4px) translateZ(10px);
+    box-shadow: 0 16px 30px -14px rgba(45,90,39,0.28);
+    border-color: #c9a227 !important;
+  }
+  
+  /* Chat widget */
+  .chat-widget button:first-child {
+    transition: transform 0.4s ease, box-shadow 0.4s ease, background 0.3s ease;
+  }
+  .chat-widget button:first-child:hover {
+    transform: scale(1.15) rotate(-6deg);
+    box-shadow: 0 0 0 10px rgba(201,162,39,0.18),
+                0 18px 34px -12px rgba(45,90,39,0.55);
+  }
+  
+  /* Modal */
+  #bookingModal .bg-white.rounded-3xl {
+    animation: modalPop 0.4s cubic-bezier(0.23,1,0.32,1);
+  }
+  @keyframes modalPop {
+    from { opacity: 0; transform: scale(0.92) translateY(16px) rotateX(-6deg); }
+    to   { opacity: 1; transform: scale(1) translateY(0) rotateX(0deg); }
+  }
+  
+  /* Footer links */
+  footer a {
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+  }
+  footer a:hover {
+    color: #c9a227 !important;
+    transform: translateY(-3px);
+  }
+  
+  /* ================= SMALL UTILITIES ================= */
+  span.font-size { font-size: 9px; text-align: center; }
+  .slovenia-font  { font-size: 10px; }
+  .padding-3      { padding: 3px; }
+  
+  /* ============================================================
+     ✨ RESPONSIVE
+     ============================================================ */
+  @media (max-width: 1024px) {
+    #home h1 { font-size: 3rem; }
+    .bg-hero-pattern { background-attachment: scroll; }
+  }
+  
+  @media (max-width: 768px) {
+    #home .max-w-4xl {
+      padding: 1.75rem 1.25rem;
+      animation: none;
+    }
+    #home .max-w-4xl:hover,
+    #home .bg-slovenia-dark\/60:hover,
+    #home a[href="#booking"]:hover,
+    #home a[href="#menu"]:hover {
+      transform: translateY(-3px) !important;
+    }
+    .menu-card:hover,
+    #about .grid img:hover,
+    #gallery img:hover,
+    section img:not([alt*="logo" i]):hover {
+      transform: translateY(-3px) scale(1.02) !important;
+    }
+    button:hover,
+    a.btn-gold:hover {
+      transform: translateY(-2px) !important;
+    }
+    #contact .bg-slovenia-cream:hover,
+    #contact .bg-white.rounded-3xl:hover,
+    #booking .bg-white.rounded-3xl:hover {
+      transform: translateY(-3px) !important;
+    }
+    .bg-hero-pattern {
+      min-height: 65vh;   /* 👈 mobile pe bhi kam */
+      background-attachment: scroll;
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+    #home h1 { font-size: 2.3rem; }
+    #home > div::before { animation: none; }
+  }
+  
+  @media (max-width: 480px) {
+    .bg-hero-pattern {
+      min-height: 60vh;   /* 👈 chhoti screen pe aur kam */
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
+    #home .max-w-4xl { padding: 1.25rem 1rem; border-radius: 22px; }
+    #home h1 { font-size: 1.85rem; }
+    #home p.text-gray-200 { font-size: 0.92rem; }
+    .menu-card { border-radius: 16px; }
+    button, a.btn-gold { font-size: 0.85rem; }
+  }
+  
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+    }
+  }
+  
+  /* Hide Google Translate junk */
+  .skiptranslate,
+  .goog-te-banner-frame { display: none !important; }
+  body { top: 0 !important; }
+
+  /* ============================================================
+ ✨ COMING SOON POPUP — SIMPLE & LIGHT
+ ============================================================ */
+#comingSoonPopup {
+display: none;
+opacity: 0;
+transition: opacity 0.3s ease;
+z-index: 9999;
+}
+#comingSoonPopup.flex,
+#comingSoonPopup.show {
+display: flex;
+opacity: 1;
+}
+
+/* Popup card */
+#comingSoonPopup > div {
+position: relative;
+background: #ffffff;
+border: 1px solid #ede8dd;
+border-radius: 20px;
+overflow: hidden;
+box-shadow: 0 20px 50px -15px rgba(0,0,0,0.15);
+animation: popupIn 0.35s ease;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@keyframes popupIn {
+from { opacity: 0; transform: translateY(20px) scale(0.96); }
+to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+#comingSoonPopup > div:hover {
+transform: translateY(-3px);
+box-shadow: 0 25px 55px -15px rgba(0,0,0,0.2);
+}
+
+/* Close (X) button */
+#closeComingSoon {
+transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+#closeComingSoon:hover {
+background: #f0f5ee;
+border-color: #c9a227;
+color: #2d5a27;
+}
+
+/* Icon circle */
+#comingSoonPopup > div > div:nth-of-type(1) {
+background: #f0f5ee;
+border: 1px solid #c9a227;
+transition: transform 0.3s ease;
+}
+#comingSoonPopup > div > div:nth-of-type(1):hover {
+transform: scale(1.05);
+}
+
+/* Brand text */
+#comingSoonPopup p.text-slovenia-gold:first-of-type {
+color: #c9a227 !important;
+}
+
+/* Heading */
+#comingSoonPopup h2 {
+color: #1e2a1e;
+}
+#comingSoonPopup h2 span.text-slovenia-gold {
+color: #c9a227 !important;
+}
+
+/* Description */
+#comingSoonPopup p.text-gray-300 {
+color: #5a6b5a !important;
+}
+
+/* Decorative line */
+#comingSoonPopup .bg-slovenia-gold {
+background: #c9a227 !important;
+}
+
+/* Location */
+#comingSoonPopup p.text-gray-400 {
+color: #8fa382 !important;
+}
+
+/* Follow us button */
+#comingSoonOkay {
+background: #c9a227;
+color: #1e2a1e;
+font-weight: 700;
+transition: background 0.3s ease, transform 0.3s ease;
+}
+#comingSoonOkay:hover {
+background: #e0b833;
+transform: translateY(-2px);
+}
+
+/* Backdrop */
+#comingSoonPopup.bg-black\/80 {
+background: rgba(0, 0, 0, 0.55) !important;
+backdrop-filter: blur(4px);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+#comingSoonPopup > div {
+  padding: 1.75rem 1.25rem !important;
+  border-radius: 18px !important;
+}
+#comingSoonPopup h2 { font-size: 1.6rem !important; }
+}
+
+
+
+/* Signup modal ki maximum height */
+#authModal > div {
+    height: auto;
+    max-height: 90vh;
+    max-height: 90dvh;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+/* Header aur tabs apni jagah rahenge */
+#authModal > div > div:first-child,
+#authModal > div > div:nth-child(2) {
+    flex-shrink: 0;
+}
+
+/* Signup form ke andar scrolling */
+#signupForm {
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: calc(90vh - 180px);
+    max-height: calc(90dvh - 180px);
+    overflow-y: scroll !important;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+}
+
+/* Scrollbar styling */
+#signupForm::-webkit-scrollbar {
+    width: 6px;
+}
+
+#signupForm::-webkit-scrollbar-thumb {
+    background: #aaa;
+    border-radius: 10px;
+}

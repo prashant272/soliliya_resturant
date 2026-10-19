@@ -1,0 +1,365 @@
+@import "tailwindcss";
+
+@theme {
+  --color-slovenia-green: #2d5a27;
+  --color-slovenia-lightgreen: #4a7c44;
+  --color-slovenia-sage: #8fa382;
+  --color-slovenia-gold: #d4af37;
+  --color-slovenia-cream: #fcfbf7;
+  --color-slovenia-dark: #1c241b;
+  --color-slovenia-charcoal: #283227;
+
+  --color-gold-500: #d4af37;
+  --color-gold-600: #aa8c2c;
+  --color-gold-400: #f4c430;
+  --color-gold: #c9a227;
+
+  --color-dark-950: #0a110c;
+  --color-dark-900: #0f1911;
+  --color-dark-800: #16241a;
+  --color-dark-700: #1e3124;
+  --color-dark-600: #294231;
+
+  --color-wilma-green: #1c4d25;
+  --color-wilma-light: #2d6a38;
+
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', sans-serif;
+  --font-display: 'Cinzel', serif;
+}
+
+/* ================= GLOBAL ================= */
+:root {
+  color-scheme: light;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #fdfbf7;
+  color: #1e2a1e;
+  overflow-x: hidden;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-heading { 
+  font-family: 'Cinzel', serif; 
+}
+
+/* Utility Color Fallbacks */
+.bg-slovenia-green { background-color: #2d5a27; }
+.bg-slovenia-lightgreen { background-color: #4a7c44; }
+.bg-slovenia-sage { background-color: #8fa382; }
+.bg-slovenia-gold { background-color: #c9a227; }
+.bg-slovenia-cream { background-color: #fcfbf7; }
+.bg-slovenia-dark { background-color: #1c241b; }
+.bg-slovenia-charcoal { background-color: #283227; }
+
+.text-slovenia-green { color: #2d5a27; }
+.text-slovenia-lightgreen { color: #4a7c44; }
+.text-slovenia-sage { color: #8fa382; }
+.text-slovenia-gold { color: #c9a227; }
+.text-slovenia-cream { color: #fcfbf7; }
+.text-slovenia-dark { color: #1c241b; }
+.text-slovenia-charcoal { color: #283227; }
+
+.border-slovenia-green { border-color: #2d5a27; }
+.border-slovenia-gold { border-color: #c9a227; }
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #fce085 0%, #d4af37 50%, #aa8c2c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ============================================================
+   HERO SECTION UTILITIES
+   ============================================================ */
+.promo-stamp-badge {
+  background: #1c4d25;
+  color: #ffffff;
+  position: relative;
+  letter-spacing: 0.15em;
+  font-weight: 800;
+  box-shadow: 0 4px 12px rgba(28, 77, 37, 0.25);
+}
+
+
+/* ================= GLASS CARD ================= */
+.glass-card {
+  background: rgba(255,255,255,0.82);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(201,162,39,0.22);
+  border-radius: 20px;
+}
+
+/* ================= PRINTABLE PASS ================= */
+.printable-pass {
+  background: radial-gradient(circle at top right, #fdfbf7, #f4efe6);
+}
+
+/* ================= BUTTONS ================= */
+.btn-gold,
+.bg-slovenia-gold {
+  background: #c9a227 !important;
+  color: #1e2a1e !important;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(201,162,39,0.28);
+  transition: all 0.3s ease;
+}
+.btn-gold:hover,
+.bg-slovenia-gold:hover {
+  box-shadow: 0 20px 38px -12px rgba(201,162,39,0.7);
+  transform: translateY(-2px) scale(1.02);
+}
+
+/* Menu Card Styles */
+.menu-card {
+  background: #ffffff !important;
+  border: 1px solid #ede8dd !important;
+  transition: transform 0.5s cubic-bezier(0.23,1,0.32,1),
+              box-shadow 0.5s ease,
+              border-color 0.3s ease;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.03);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.menu-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201,162,39,0.08), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+.menu-card:hover::before { opacity: 1; }
+.menu-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 25px 45px -15px rgba(45,90,39,0.25),
+              0 0 25px -8px rgba(201,162,39,0.2);
+  border-color: #c9a227 !important;
+}
+
+/* Small utilities */
+span.font-size { font-size: 9px; text-align: center; }
+.slovenia-font  { font-size: 10px; }
+.padding-3      { padding: 3px; }
+
+@media (max-width: 1024px) {
+  .bg-hero-pattern { background-attachment: scroll; }
+}
+
+/* ================= GOOGLE TRANSLATE CLEANUP ================= */
+.goog-te-banner-frame,
+.goog-te-banner-frame.skiptranslate,
+#goog-gt-tt,
+.goog-te-balloon-frame {
+  display: none !important;
+}
+body {
+  top: 0px !important;
+}
+.goog-tooltip {
+  display: none !important;
+}
+.goog-tooltip:hover {
+  display: none !important;
+}
+.goog-text-highlight {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+font[style*="vertical-align: inherit;"] {
+  vertical-align: baseline !important;
+}
+
+/* ================= PRINT STYLES FOR VIP DINING PASS ================= */
+@media print {
+  @page {
+    margin: 8mm;
+    size: auto;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body * {
+    visibility: hidden !important;
+  }
+
+  #printable-vip-pass,
+  #printable-vip-pass * {
+    visibility: visible !important;
+  }
+
+  #printable-vip-pass {
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    margin: 0 auto !important;
+    max-height: none !important;
+    width: 100% !important;
+    max-width: 480px !important;
+    box-shadow: none !important;
+    border: 2px solid #142218 !important;
+    border-radius: 20px !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    overflow: visible !important;
+  }
+
+  /* Make ALL text strong, deep black / dark green by default */
+  #printable-vip-pass * {
+    text-shadow: none !important;
+  }
+
+  /* Top Banner */
+  #printable-vip-pass .print-banner {
+    background-color: #f7faf7 !important;
+    border-bottom: 2px solid #142218 !important;
+    padding: 16px !important;
+  }
+
+  #printable-vip-pass .print-banner h3 {
+    color: #000000 !important;
+    font-weight: 900 !important;
+    font-size: 22px !important;
+  }
+
+  #printable-vip-pass .print-banner p {
+    color: #111827 !important;
+    font-weight: 700 !important;
+    font-size: 12px !important;
+  }
+
+  #printable-vip-pass .status-badge {
+    background-color: #ffffff !important;
+    border: 2px solid #142218 !important;
+    color: #142218 !important;
+    font-weight: 900 !important;
+    padding: 4px 14px !important;
+  }
+
+  #printable-vip-pass .status-badge span {
+    color: #142218 !important;
+    font-weight: 900 !important;
+    font-size: 11px !important;
+    letter-spacing: 0.12em !important;
+  }
+
+  /* Table Number Highlight Box */
+  #printable-vip-pass .table-box {
+    background-color: #f3f7f2 !important;
+    border: 2.5px solid #142218 !important;
+    border-radius: 14px !important;
+    padding: 14px !important;
+  }
+
+  #printable-vip-pass .table-title {
+    color: #142218 !important;
+    font-size: 12px !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.12em !important;
+  }
+
+  #printable-vip-pass .table-number {
+    color: #000000 !important;
+    font-size: 32px !important;
+    font-weight: 900 !important;
+    letter-spacing: 0.05em !important;
+  }
+
+  #printable-vip-pass .table-note {
+    color: #1f2937 !important;
+    font-size: 12px !important;
+    font-weight: 700 !important;
+  }
+
+  /* Allowed Members Box */
+  #printable-vip-pass .members-box {
+    background-color: #f8faf8 !important;
+    border: 2px solid #142218 !important;
+    border-radius: 14px !important;
+    padding: 12px 16px !important;
+  }
+
+  #printable-vip-pass .members-label {
+    color: #000000 !important;
+    font-weight: 900 !important;
+    font-size: 14px !important;
+  }
+
+  #printable-vip-pass .members-badge {
+    background-color: #142218 !important;
+    color: #ffffff !important;
+    font-weight: 900 !important;
+    font-size: 13px !important;
+    border: 1.5px solid #142218 !important;
+    padding: 4px 14px !important;
+    border-radius: 10px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Details Box */
+  #printable-vip-pass .details-box {
+    background-color: #ffffff !important;
+    border: 2px solid #1f2937 !important;
+    border-radius: 14px !important;
+    padding: 14px 16px !important;
+  }
+
+  #printable-vip-pass .details-row {
+    border-bottom: 1.5px solid #e5e7eb !important;
+    padding: 8px 0 !important;
+  }
+
+  #printable-vip-pass .details-label {
+    color: #111827 !important;
+    font-weight: 800 !important;
+    font-size: 13px !important;
+  }
+
+  #printable-vip-pass .details-value {
+    color: #000000 !important;
+    font-weight: 900 !important;
+    font-size: 13px !important;
+  }
+
+  #printable-vip-pass .details-code {
+    color: #142218 !important;
+    font-weight: 900 !important;
+    font-size: 15px !important;
+    font-family: monospace !important;
+  }
+
+  /* QR Box */
+  #printable-vip-pass .qr-box {
+    background-color: #ffffff !important;
+    border: 2px solid #1f2937 !important;
+    border-radius: 14px !important;
+    padding: 16px !important;
+  }
+
+  #printable-vip-pass .qr-caption {
+    color: #000000 !important;
+    font-weight: 800 !important;
+    font-size: 12px !important;
+    margin-top: 10px !important;
+    line-height: 1.4 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}

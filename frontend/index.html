@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/jpeg" href="/images/footer-logo.jpeg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Google Translate Integration -->
+  <script type="text/javascript">
+    if (!document.cookie.includes('googtrans=')) {
+      document.cookie = "googtrans=/en/sl; path=/";
+      document.cookie = "googtrans=/en/sl; domain=" + window.location.hostname + "; path=/";
+    }
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'sl,en,de,it',
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+  <!-- Primary Meta Tags -->
+  <title>Wilma Restaurant | Ljubljana - Tastes of Slovenia &amp; Business Elegance</title>
+  <meta name="title" content="Wilma Restaurant | Ljubljana - Tastes of Slovenia &amp; Business Elegance" />
+  <meta name="description"
+    content="Restavracija v Ljubljani s slovensko kulinariko, poslovnimi kosili, zajtrki in večerjami. Dunajska cesta 106, 1000 Ljubljana." />
+  <meta name="keywords"
+    content="Restavracija Wilma, Ljubljana restaurant, Slovenian cuisine, business lunch Ljubljana, Dunajska cesta 106" />
+  <meta name="author" content="Restavracija Wilma" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Wilma Restaurant | Ljubljana - Tastes of Slovenia &amp; Business Elegance" />
+  <meta property="og:description"
+    content="Welcome to Wilma Restaurant. The perfect place for business lunches, meetings, breakfasts, relaxed dinners and top-notch Slovenian flavors." />
+  <meta property="og:image" content="/images/footer-logo.jpeg" />
+
+  <!-- Structured Data (JSON-LD) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "Restavracija Wilma",
+    "description": "Restavracija v Ljubljani s slovensko kulinariko, poslovnimi kosili, zajtrki in večerjami.",
+    "telephone": "+38640791618",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Dunajska cesta 106",
+      "postalCode": "1000",
+      "addressLocality": "Ljubljana",
+      "addressCountry": "SI"
+    },
+    "servesCuisine": [
+      "Slovenian",
+      "Traditional Slovenian cuisine"
+    ],
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "07:30",
+        "closes": "22:00"
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": "Saturday",
+        "opens": "08:30",
+        "closes": "23:00"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Google Fonts: Cinzel & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <!-- QRCode.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <link href="/src/index.css" rel="stylesheet">
+</head>
+
+<body class="antialiased flex flex-col min-h-screen">
+  <div id="google_translate_element" style="display:none;"></div>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>
