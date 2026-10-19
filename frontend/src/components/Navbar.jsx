@@ -13,6 +13,39 @@ const Navbar = ({ onOpenAuth }) => {
     const location = useLocation();
     const navigate = useNavigate();
 
+    const [currentLang, setCurrentLang] = useState(() => {
+        return localStorage.getItem('wilma_lang') || 'sl';
+    });
+
+    const isLocalhost = typeof window !== 'undefined' && Boolean(
+        window.location.hostname === 'localhost' ||
+        window.location.hostname === '127.0.0.1' ||
+        window.location.hostname === '[::1]' ||
+        window.location.hostname.endsWith('.localhost')
+    );
+
+    const handleLanguageChange = (lang) => {
+        if (lang === currentLang) return;
+        localStorage.setItem('wilma_lang', lang);
+        setCurrentLang(lang);
+
+        const cookieVal = lang === 'en' ? '/en/en' : '/en/sl';
+        document.cookie = `googtrans=${cookieVal}; path=/`;
+        if (window.location.hostname && window.location.hostname !== 'localhost') {
+            document.cookie = `googtrans=${cookieVal}; domain=${window.location.hostname}; path=/`;
+        }
+
+        const combo = document.querySelector('.goog-te-combo');
+        if (combo) {
+            combo.value = lang;
+            combo.dispatchEvent(new Event('change'));
+        }
+
+        setTimeout(() => {
+            window.location.reload();
+        }, 150);
+    };
+
     useEffect(() => {
         const handleScroll = () => {
             if (window.scrollY > 20) {
@@ -65,43 +98,72 @@ const Navbar = ({ onOpenAuth }) => {
                             onClick={(e) => handleNavClick(e, 'home')}
                             className="text-gray-900 hover:text-[#D4AF37] transition-colors"
                         >
-                            Home
+                            {currentLang === 'sl' ? 'Domov' : 'Home'}
                         </a>
                         <a
                             href="#about"
                             onClick={(e) => handleNavClick(e, 'about')}
                             className="text-gray-900 hover:text-[#D4AF37] transition-colors"
                         >
-                            About Us
+                            {currentLang === 'sl' ? 'O nas' : 'About Us'}
                         </a>
                         <Link
                             to="/menu"
-                            className={`transition-colors font-bold ${
-                                location.pathname === '/menu'
+                            className={`transition-colors font-bold ${location.pathname === '/menu'
                                     ? 'text-[#c9a227] font-extrabold'
                                     : 'text-gray-900 hover:text-[#D4AF37]'
-                            }`}
+                                }`}
                         >
-                            Menu
+                            {currentLang === 'sl' ? 'Meni' : 'Menu'}
                         </Link>
                         <a
                             href="#booking"
                             onClick={(e) => handleNavClick(e, 'booking')}
                             className="text-gray-900 hover:text-[#D4AF37] transition-colors"
                         >
-                            Reservation
+                            {currentLang === 'sl' ? 'Rezervacija' : 'Reservation'}
                         </a>
                         <a
                             href="#contact"
                             onClick={(e) => handleNavClick(e, 'contact')}
                             className="text-gray-900 hover:text-[#D4AF37] transition-colors"
                         >
-                            Contact &amp; Support
+                            {currentLang === 'sl' ? 'Kontakt in podpora' : 'Contact & Support'}
                         </a>
                     </nav>
 
                     {/* Header Actions */}
                     <div className="hidden lg:flex items-center gap-3 xl:gap-4">
+                        {/* Language Switcher (SL / EN) - Only visible on localhost */}
+                        {isLocalhost && (
+                            <div className="notranslate flex items-center bg-gray-100 rounded-full p-1 border border-gray-200/90 text-xs font-semibold shadow-2xs">
+                                <button
+                                    type="button"
+                                    onClick={() => handleLanguageChange('sl')}
+                                    className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full transition-all cursor-pointer ${currentLang === 'sl'
+                                            ? 'bg-[#283227] text-[#d4af37] shadow-sm font-bold'
+                                            : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200/60'
+                                        }`}
+                                    title="Slovenščina (SL)"
+                                >
+                                    <span className="text-sm leading-none">🇸🇮</span>
+                                    <span>SL</span>
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => handleLanguageChange('en')}
+                                    className={`flex items-center gap-1.5 px-2.5 py-1 rounded-full transition-all cursor-pointer ${currentLang === 'en'
+                                            ? 'bg-[#283227] text-[#d4af37] shadow-sm font-bold'
+                                            : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200/60'
+                                        }`}
+                                    title="English (EN)"
+                                >
+                                    <span className="text-sm leading-none">🇬🇧</span>
+                                    <span>EN</span>
+                                </button>
+                            </div>
+                        )}
+
                         <a
                             href="tel:040791618"
                             className="flex items-center gap-2 text-xs text-[#d4af37] bg-[#283227] px-3.5 py-2.5 rounded-lg border border-[#d4af37]/30 hover:border-[#d4af37] transition-all font-semibold"
@@ -129,20 +191,19 @@ const Navbar = ({ onOpenAuth }) => {
                             <div className="flex items-center gap-2">
                                 <Link
                                     to="/dashboard"
-                                    className={`flex items-center gap-2 text-xs font-bold px-3.5 py-2.5 rounded-xl border transition-all shadow-xs cursor-pointer ${
-                                        location.pathname === '/dashboard'
+                                    className={`flex items-center gap-2 text-xs font-bold px-3.5 py-2.5 rounded-xl border transition-all shadow-xs cursor-pointer ${location.pathname === '/dashboard'
                                             ? 'bg-[#142218] text-[#d4af37] border-[#d4af37]/50 ring-1 ring-[#d4af37]/40 shadow-sm'
                                             : 'bg-white text-gray-900 border-gray-300 hover:border-[#d4af37] hover:text-[#2d5a27]'
-                                    }`}
+                                        }`}
                                 >
                                     <LayoutDashboard size={15} className={location.pathname === '/dashboard' ? 'text-[#d4af37]' : 'text-[#2d5a27]'} />
-                                    <span>Dashboard</span>
+                                    <span>{currentLang === 'sl' ? 'Nadzorna plošča' : 'Dashboard'}</span>
                                 </Link>
                                 <button
                                     onClick={logout}
                                     className="text-xs text-red-600 hover:text-red-700 hover:underline px-2 py-1 cursor-pointer font-semibold"
                                 >
-                                    Logout
+                                    {currentLang === 'sl' ? 'Odjava' : 'Logout'}
                                 </button>
                             </div>
                         ) : (
@@ -151,7 +212,7 @@ const Navbar = ({ onOpenAuth }) => {
                                 className="flex items-center gap-2 text-xs text-gray-900 bg-white px-4 py-2.5 rounded-xl border border-gray-300 hover:border-[#d4af37] hover:bg-gray-50 transition-all shadow-xs font-semibold cursor-pointer"
                             >
                                 <i className="fa-solid fa-user text-[#2d5a27]"></i>
-                                <span>Login / Sign Up</span>
+                                <span>{currentLang === 'sl' ? 'Prijava / Registracija' : 'Login / Sign Up'}</span>
                             </button>
                         )}
 
@@ -161,12 +222,25 @@ const Navbar = ({ onOpenAuth }) => {
                             className="bg-[#c9a227] hover:bg-yellow-500 text-[#1c241b] font-bold px-5 py-2.5 rounded-lg text-sm transition-all shadow-md hover:shadow-[#d4af37]/20 flex items-center gap-2"
                         >
                             <i className="fa-solid fa-utensils mr-1"></i>
-                            <span>Book a Table</span>
+                            <span>{currentLang === 'sl' ? 'Rezervirajte mizo' : 'Book a Table'}</span>
                         </a>
                     </div>
 
                     {/* Mobile Menu Button */}
                     <div className="md:hidden flex items-center gap-2">
+                        {/* Mobile Quick Flag Switcher - Only on localhost */}
+                        {isLocalhost && (
+                            <button
+                                type="button"
+                                onClick={() => handleLanguageChange(currentLang === 'sl' ? 'en' : 'sl')}
+                                className="notranslate flex items-center gap-1.5 px-2.5 py-1.5 bg-gray-100 hover:bg-gray-200 border border-gray-200 rounded-full text-xs font-bold text-gray-800 transition-all cursor-pointer active:scale-95 shadow-2xs"
+                                title={currentLang === 'sl' ? "Preklopi v angleščino (EN)" : "Preklopi v slovenščino (SL)"}
+                            >
+                                <span className="text-sm leading-none">{currentLang === 'sl' ? '🇸🇮' : '🇬🇧'}</span>
+                                <span className="font-extrabold">{currentLang === 'sl' ? 'SL' : 'EN'}</span>
+                            </button>
+                        )}
+
                         <button
                             onClick={() => setIsCartOpen(!isCartOpen)}
                             className="relative text-gray-800 p-2 cursor-pointer"
@@ -198,50 +272,81 @@ const Navbar = ({ onOpenAuth }) => {
                         onClick={(e) => handleNavClick(e, 'home')}
                         className="block py-2 text-gray-200 hover:text-[#d4af37] border-b border-white/5"
                     >
-                        Home
+                        {currentLang === 'sl' ? 'Domov' : 'Home'}
                     </a>
                     <a
                         href="#about"
                         onClick={(e) => handleNavClick(e, 'about')}
                         className="block py-2 text-gray-200 hover:text-[#d4af37] border-b border-white/5"
                     >
-                        About Us
+                        {currentLang === 'sl' ? 'O nas' : 'About Us'}
                     </a>
                     <Link
                         to="/menu"
                         onClick={() => setIsMobileMenuOpen(false)}
-                        className={`block py-2 border-b border-white/5 font-semibold ${
-                            location.pathname === '/menu'
+                        className={`block py-2 border-b border-white/5 font-semibold ${location.pathname === '/menu'
                                 ? 'text-[#d4af37]'
                                 : 'text-gray-200 hover:text-[#d4af37]'
-                        }`}
+                            }`}
                     >
-                        Menu
+                        {currentLang === 'sl' ? 'Meni' : 'Menu'}
                     </Link>
                     <a
                         href="#booking"
                         onClick={(e) => handleNavClick(e, 'booking')}
                         className="block py-2 text-gray-200 hover:text-[#d4af37] border-b border-white/5"
                     >
-                        Reservation
+                        {currentLang === 'sl' ? 'Rezervacija' : 'Reservation'}
                     </a>
                     <a
                         href="#contact"
                         onClick={(e) => handleNavClick(e, 'contact')}
                         className="block py-2 text-gray-200 hover:text-[#d4af37] border-b border-white/5"
                     >
-                        Contact &amp; Support
+                        {currentLang === 'sl' ? 'Kontakt in podpora' : 'Contact & Support'}
                     </a>
+
+                    {/* Mobile Drawer Language Switcher - Only on localhost */}
+                    {isLocalhost && (
+                        <div className="notranslate flex items-center justify-between py-2.5 border-b border-white/10">
+                            <span className="text-xs text-gray-300 font-medium flex items-center gap-2">
+                                <i className="fa-solid fa-globe text-[#d4af37]"></i>
+                                <span>Jezik / Language</span>
+                            </span>
+                            <div className="flex items-center bg-black/40 rounded-full p-1 border border-[#d4af37]/30 text-xs font-semibold">
+                                <button
+                                    type="button"
+                                    onClick={() => handleLanguageChange('sl')}
+                                    className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all cursor-pointer ${currentLang === 'sl'
+                                            ? 'bg-[#c9a227] text-[#1c241b] font-bold shadow-sm'
+                                            : 'text-gray-300 hover:text-white'
+                                        }`}
+                                >
+                                    <span>🇸🇮</span> SL
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={() => handleLanguageChange('en')}
+                                    className={`flex items-center gap-1.5 px-3 py-1 rounded-full transition-all cursor-pointer ${currentLang === 'en'
+                                            ? 'bg-[#c9a227] text-[#1c241b] font-bold shadow-sm'
+                                            : 'text-gray-300 hover:text-white'
+                                        }`}
+                                >
+                                    <span>🇬🇧</span> EN
+                                </button>
+                            </div>
+                        </div>
+                    )}
 
                     <div className="pt-3 flex flex-col gap-2.5">
                         {user ? (
                             <div className="flex justify-between items-center py-2 text-gray-200 border-b border-white/10">
-                                <span>Welcome, {user.name || 'Guest'}</span>
+                                <span>{currentLang === 'sl' ? 'Dobrodošli, ' : 'Welcome, '}{user.name || (currentLang === 'sl' ? 'Gost' : 'Guest')}</span>
                                 <div className="flex gap-3">
                                     <Link to="/dashboard" onClick={() => setIsMobileMenuOpen(false)} className="text-[#d4af37] font-semibold flex items-center gap-1">
-                                        <LayoutDashboard size={14} /> Dashboard
+                                        <LayoutDashboard size={14} /> {currentLang === 'sl' ? 'Nadzorna plošča' : 'Dashboard'}
                                     </Link>
-                                    <button onClick={logout} className="text-red-400 font-bold">Logout</button>
+                                    <button onClick={logout} className="text-red-400 font-bold">{currentLang === 'sl' ? 'Odjava' : 'Logout'}</button>
                                 </div>
                             </div>
                         ) : (
@@ -250,7 +355,7 @@ const Navbar = ({ onOpenAuth }) => {
                                 className="w-full text-center py-2.5 bg-white text-gray-900 rounded-lg border border-gray-300 font-medium flex items-center justify-center gap-2 cursor-pointer"
                             >
                                 <i className="fa-solid fa-user"></i>
-                                <span>Login / Sign Up</span>
+                                <span>{currentLang === 'sl' ? 'Prijava / Registracija' : 'Login / Sign Up'}</span>
                             </button>
                         )}
 
@@ -259,7 +364,7 @@ const Navbar = ({ onOpenAuth }) => {
                             className="text-center py-2.5 bg-[#1c241b] text-[#d4af37] rounded-lg border border-[#d4af37]/30 flex items-center justify-center gap-2"
                         >
                             <i className="fa-solid fa-phone"></i>
-                            <span>Call 040 791 618</span>
+                            <span>{currentLang === 'sl' ? 'Pokličite 040 791 618' : 'Call 040 791 618'}</span>
                         </a>
 
                         <a
@@ -267,7 +372,7 @@ const Navbar = ({ onOpenAuth }) => {
                             onClick={(e) => handleNavClick(e, 'booking')}
                             className="text-center py-2.5 bg-[#c9a227] text-[#1c241b] font-bold rounded-lg shadow"
                         >
-                            Book a Table
+                            {currentLang === 'sl' ? 'Rezervirajte mizo' : 'Book a Table'}
                         </a>
                     </div>
                 </div>

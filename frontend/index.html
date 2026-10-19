@@ -1,21 +1,66 @@
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="sl" class="scroll-smooth">
 
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/jpeg" href="/images/footer-logo.jpeg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google Translate Integration -->
-  <script type="text/javascript">
-    if (!document.cookie.includes('googtrans=')) {
-      document.cookie = "googtrans=/en/sl; path=/";
-      document.cookie = "googtrans=/en/sl; domain=" + window.location.hostname + "; path=/";
+  <!-- Disable Google Chrome's native translation popup bar -->
+  <meta name="google" content="notranslate" />
+
+  <!-- Preconnect to Google Translate endpoints for instant initialization -->
+  <link rel="preconnect" href="https://translate.google.com" crossorigin />
+  <link rel="preconnect" href="https://translate.googleapis.com" crossorigin />
+
+  <!-- Anti-FOUC Cloak: Ensures website opens directly in Slovenian without English flashing -->
+  <style id="wilma-lang-cloak">
+    html.lang-translating body {
+      opacity: 0 !important;
+      visibility: hidden !important;
     }
+    body {
+      transition: opacity 0.2s ease-in-out;
+    }
+  </style>
+
+  <!-- Google Translate Integration (Controlled by Flag Switcher) -->
+  <script type="text/javascript">
+    (function() {
+      // By default, stay in Slovenian ('sl') unless user explicitly switched to English
+      var savedLang = localStorage.getItem('wilma_lang') || 'sl';
+      var cookieVal = savedLang === 'en' ? '/en/en' : '/en/sl';
+      document.cookie = "googtrans=" + cookieVal + "; path=/";
+      if (window.location.hostname && window.location.hostname !== 'localhost') {
+        document.cookie = "googtrans=" + cookieVal + "; domain=" + window.location.hostname + "; path=/";
+      }
+
+      // If in Slovenian mode, activate the smooth cloak until translation finishes
+      if (savedLang === 'sl') {
+        document.documentElement.classList.add('lang-translating');
+
+        var revealPage = function() {
+          document.documentElement.classList.remove('lang-translating');
+        };
+
+        // When Google Translate finishes translating to Slovenian, it adds 'translated-ltr' to <html>
+        var observer = new MutationObserver(function() {
+          if (document.documentElement.classList.contains('translated-ltr')) {
+            revealPage();
+            observer.disconnect();
+          }
+        });
+        observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+        // Safety fallback so content always displays smoothly within 450ms
+        setTimeout(revealPage, 450);
+      }
+    })();
+
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
         pageLanguage: 'en',
-        includedLanguages: 'sl,en,de,it',
+        includedLanguages: 'sl,en',
         autoDisplay: false
       }, 'google_translate_element');
     }
@@ -94,7 +139,7 @@
   <link href="/src/index.css" rel="stylesheet">
 </head>
 
-<body class="antialiased flex flex-col min-h-screen">
+<body class="antialiased flex flex-col min-h-screen bg-[#fdfbf7]">
   <div id="google_translate_element" style="display:none;"></div>
   <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
