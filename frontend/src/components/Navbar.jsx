@@ -87,7 +87,7 @@ const Navbar = ({ onOpenAuth }) => {
                         <img
                             src="/images/wilma-logo-clean.png"
                             alt="Restavracija Wilma Logo"
-                            className="h-10 sm:h-12 md:h-[48px] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                            className="h-16 sm:h-20 md:h-[50px] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                         />
                     </a>
 
@@ -116,13 +116,13 @@ const Navbar = ({ onOpenAuth }) => {
                         >
                             {currentLang === 'sl' ? 'Meni' : 'Menu'}
                         </Link>
-                        <a
+                        {/* <a
                             href="#booking"
                             onClick={(e) => handleNavClick(e, 'booking')}
                             className="text-gray-900 hover:text-[#D4AF37] transition-colors"
                         >
                             {currentLang === 'sl' ? 'Rezervacija' : 'Reservation'}
-                        </a>
+                        </a> */}
                         <a
                             href="#contact"
                             onClick={(e) => handleNavClick(e, 'contact')}
@@ -165,11 +165,11 @@ const Navbar = ({ onOpenAuth }) => {
                         )}
 
                         <a
-                            href="tel:040791618"
+                            href="tel:+38640791618"
                             className="flex items-center gap-2 text-xs text-[#d4af37] bg-[#283227] px-3.5 py-2.5 rounded-lg border border-[#d4af37]/30 hover:border-[#d4af37] transition-all font-semibold"
                         >
                             <i className="fa-solid fa-phone"></i>
-                            <span>040 791 618</span>
+                            <span>40 791 618</span>
                         </a>
 
                         {/* Cart Button if active */}
@@ -216,14 +216,14 @@ const Navbar = ({ onOpenAuth }) => {
                             </button>
                         )}
 
-                        <a
+                        {/* <a
                             href="#booking"
                             onClick={(e) => handleNavClick(e, 'booking')}
                             className="bg-[#c9a227] hover:bg-yellow-500 text-[#1c241b] font-bold px-5 py-2.5 rounded-lg text-sm transition-all shadow-md hover:shadow-[#d4af37]/20 flex items-center gap-2"
                         >
                             <i className="fa-solid fa-utensils mr-1"></i>
                             <span>{currentLang === 'sl' ? 'Rezervirajte mizo' : 'Book a Table'}</span>
-                        </a>
+                        </a> */}
                     </div>
 
                     {/* Mobile Menu Button */}
@@ -360,11 +360,11 @@ const Navbar = ({ onOpenAuth }) => {
                         )}
 
                         <a
-                            href="tel:040791618"
+                            href="tel:+38640791618"
                             className="text-center py-2.5 bg-[#1c241b] text-[#d4af37] rounded-lg border border-[#d4af37]/30 flex items-center justify-center gap-2"
                         >
                             <i className="fa-solid fa-phone"></i>
-                            <span>{currentLang === 'sl' ? 'Pokličite 040 791 618' : 'Call 040 791 618'}</span>
+                            <span>{currentLang === 'sl' ? 'Pokličite 40 791 618' : 'Call 40 791 618'}</span>
                         </a>
 
                         <a

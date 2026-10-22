@@ -176,8 +176,8 @@ const Footer = () => {
                         <div className="flex items-center gap-2.5">
                             {/* Facebook - Official Blue #1877F2 */}
                             <a 
-                                href="https://facebook.com" 
-                                target="_blank" 
+                                href="https://www.facebook.com/Restavracija.Wilma" 
+                                target="https://www.facebook.com/Restavracija.Wilma" 
                                 rel="noopener noreferrer" 
                                 className="w-9 h-9 rounded-full bg-white shadow-xs border border-gray-200 flex items-center justify-center text-[#1877F2] hover:bg-[#1877F2] hover:text-white hover:scale-110 transition-all duration-200" 
                                 aria-label="Facebook"
@@ -188,8 +188,8 @@ const Footer = () => {
 
                             {/* Instagram - Official Gradient/Pink #E4405F */}
                             <a 
-                                href="https://instagram.com" 
-                                target="_blank" 
+                                href="https://www.instagram.com/restarvacija.wilma" 
+                                target="https://www.instagram.com/restarvacija.wilma" 
                                 rel="noopener noreferrer" 
                                 className="w-9 h-9 rounded-full bg-white shadow-xs border border-gray-200 flex items-center justify-center text-[#E4405F] hover:bg-[#E4405F] hover:text-white hover:scale-110 transition-all duration-200" 
                                 aria-label="Instagram"

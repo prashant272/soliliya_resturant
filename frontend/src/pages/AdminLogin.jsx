@@ -4,7 +4,7 @@ import axios from 'axios';
 import { Lock, Mail, ArrowLeft, ShieldCheck, Eye, EyeOff } from 'lucide-react';
 
 const AdminLogin = () => {
-    const [email, setEmail] = useState('admin@biryaniyoyo.com');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);

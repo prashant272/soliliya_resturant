@@ -18,7 +18,7 @@ const Contact = () => {
                         Contact &amp; <span className="text-[#d4af37]">Support</span>
                     </h1>
                     <p className="text-gray-300 text-sm sm:text-base max-w-2xl mx-auto">
-                        Dunajska cesta 106, 1000 Ljubljana • Direct Phone: 040 791 618
+                        Dunajska cesta 106, 1000 Ljubljana • Direct Phone: 40 791 618
                     </p>
                 </div>
             </div>

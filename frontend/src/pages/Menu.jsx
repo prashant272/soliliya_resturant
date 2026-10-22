@@ -559,7 +559,7 @@ const Menu = () => {
                         </div>
                         <div className="inline-flex items-center gap-1.5 bg-white/85 backdrop-blur-md border border-gray-200/80 px-3 py-1 rounded-full shadow-2xs font-semibold">
                             <Phone size={12} className="text-[#2d5a27]" />
-                            <span>040 791 618</span>
+                            <span>40 791 618</span>
                         </div>
                     </div>
 

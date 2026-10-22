@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, Outlet, useNavigate, useLocation } from 'react-router-dom';
-import { LayoutDashboard, Utensils, LogOut, Package, Layers, Calendar, ExternalLink } from 'lucide-react';
+import { LayoutDashboard, Utensils, LogOut, Package, Layers, Calendar, ExternalLink, MessageSquare } from 'lucide-react';
 
 const AdminDashboard = () => {
     const navigate = useNavigate();
@@ -18,6 +18,7 @@ const AdminDashboard = () => {
         { path: '/admin/menu', icon: Utensils, label: 'Menu Management' },
         { path: '/admin/orders', icon: Package, label: 'Orders' },
         { path: '/admin/bookings', icon: Calendar, label: 'Table Bookings' },
+        { path: '/admin/enquiries', icon: MessageSquare, label: 'Enquiries' },
     ];
 
 

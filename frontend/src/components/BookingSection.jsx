@@ -316,7 +316,7 @@ const BookingSection = () => {
                                 Restavracija Wilma
                             </h3>
                             <p className="text-[11px] sm:text-xs text-[#8ea693] mt-0.5">
-                                Dunajska cesta 106, 1000 Ljubljana • Tel: 040 791 618
+                                Dunajska cesta 106, 1000 Ljubljana • Tel: 40 791 618
                             </p>
                         </div>
 

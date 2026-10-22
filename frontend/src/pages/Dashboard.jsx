@@ -68,7 +68,7 @@ const Dashboard = () => {
             `👤 Gost: ${booking.name}\n` +
             `🔖 Referenčna koda: ${refCode}\n\n` +
             `📍 Naslov: Dunajska cesta 106, 1000 Ljubljana\n` +
-            `📞 Telefon: 040 791 618\n` +
+            `📞 Telefon: 40 791 618\n` +
             `🌐 Spletna stran: ${window.location.origin}`;
 
         if (navigator.share) {
@@ -689,7 +689,7 @@ const Dashboard = () => {
                                     type="tel"
                                     value={profileForm.phone}
                                     onChange={(e) => setProfileForm({ ...profileForm, phone: e.target.value })}
-                                    placeholder="e.g. 040 791 618"
+                                    placeholder="e.g. 40 791 618"
                                     className="w-full bg-[#fcfbf7] border border-gray-300 rounded-xl px-4 py-2.5 text-sm text-gray-900 focus:border-[#2d5a27] focus:ring-1 focus:ring-[#2d5a27] outline-none"
                                     required
                                 />
@@ -925,7 +925,7 @@ const Dashboard = () => {
                                 Restavracija Wilma
                             </h3>
                             <p className="text-[11px] sm:text-xs text-[#8ea693] mt-0.5">
-                                Dunajska cesta 106, 1000 Ljubljana • Tel: 040 791 618
+                                Dunajska cesta 106, 1000 Ljubljana • Tel: 40 791 618
                             </p>
 
                             <div className="status-badge inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#1c4d25] border border-[#d4af37]/50 text-[#d4af37] text-[10px] font-bold uppercase tracking-widest mt-2.5 shadow-xs">

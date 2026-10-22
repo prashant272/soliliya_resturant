@@ -2,7 +2,7 @@ import React from 'react';
 import Hero from '../components/Hero';
 import AboutSection from '../components/AboutSection';
 import MenuSection from '../components/MenuSection';
-import BookingSection from '../components/BookingSection';
+// import BookingSection from '../components/BookingSection';
 import ContactSection from '../components/ContactSection';
 
 const Home = () => {
@@ -11,7 +11,7 @@ const Home = () => {
             <Hero />
             <AboutSection />
             <MenuSection />
-            <BookingSection />
+            {/* <BookingSection /> */}
             <ContactSection />
         </div>
     );

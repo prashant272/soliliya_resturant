@@ -19,6 +19,7 @@ app.use("/api/categories", require("./routes/categoryRoutes"));
 app.use("/api/orders", require("./routes/orderRoutes"));
 app.use("/api/offers", require("./routes/offerRoutes"));
 app.use("/api/reservation", require("./routes/reservationRoutes"));
+app.use("/api/enquiries", require("./routes/enquiryRoutes"));
 
 app.get("/", (req, res) => {
     res.send("Restaurant API Running...");

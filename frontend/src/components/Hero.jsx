@@ -67,9 +67,9 @@ const Hero = () => {
                     <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tight drop-shadow-md">
                         {isSlovenian ? 'Dobro kosilo.' : 'Good lunch.'}
                     </span>
-                    <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tight text-[#d4af37] drop-shadow-lg mt-0.5">
+                    {/* <span className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl tracking-tight text-[#d4af37] drop-shadow-lg mt-0.5">
                         {isSlovenian ? 'Še boljša večerja.' : 'Even better dinner.'}
-                    </span>
+                    </span> */}
                 </h1>
 
                 {/* Subtitle */}
@@ -100,14 +100,14 @@ const Hero = () => {
                         <span>{isSlovenian ? 'DANAŠNJI MENI' : "TODAY'S MENU"}</span>
                         <span className="text-sm">↓</span>
                     </a>
-                    <a
+                    {/* <a
                         href="#booking"
                         onClick={(e) => scrollToSection(e, 'booking')}
                         className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 bg-black/60 hover:bg-black/80 backdrop-blur-md border border-[#d4af37] text-white hover:text-[#d4af37] text-xs sm:text-sm font-extrabold uppercase rounded-xl shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer"
                     >
                         <span>{isSlovenian ? 'REZERVIRAJTE MIZO' : 'BOOK A TABLE'}</span>
                         <span className="text-sm">→</span>
-                    </a>
+                    </a> */}
                 </div>
 
             </div>

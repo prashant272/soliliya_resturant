@@ -15,6 +15,7 @@ import Checkout from './pages/Checkout';
 import OrderSuccess from './pages/OrderSuccess';
 import OrderManagement from './pages/OrderManagement';
 import BookingManagement from './pages/BookingManagement';
+import EnquiryManagement from './pages/EnquiryManagement';
 import MyOrders from './pages/MyOrders';
 import ScrollToTop from './components/ScrollToTop';
 import CartDrawer from './components/CartDrawer';
@@ -52,6 +53,7 @@ function App() {
               <Route path="menu" element={<MenuManagement />} />
               <Route path="orders" element={<OrderManagement />} />
               <Route path="bookings" element={<BookingManagement />} />
+              <Route path="enquiries" element={<EnquiryManagement />} />
             </Route>
 
             {/* Public Routes */}

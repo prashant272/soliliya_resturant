@@ -19,13 +19,13 @@ const LiveChatWidget = () => {
         setMessages(newMessages);
         setInput('');
 
-        // Automatic polite reply in Slovenian
+        // Automatic polite reply
         setTimeout(() => {
             setMessages(prev => [
                 ...prev,
                 {
                     sender: 'bot',
-                    text: 'Hvala za vaše sporočilo! Mizo lahko rezervirate neposredno na spletni strani, nas pokličete na 040 791 618 ali nam pišete neposredno na WhatsApp.'
+                    text: 'Thank you for reaching out! You can book a table directly on our website, call us at 40 791 618, or message us directly on WhatsApp.'
                 }
             ]);
         }, 800);
