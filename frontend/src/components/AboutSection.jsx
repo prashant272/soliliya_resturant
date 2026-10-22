@@ -13,10 +13,10 @@ const AboutSection = () => {
     const isSlovenian = savedLang === 'sl';
 
     return (
-        <section id="about" className="relative py-14 sm:py-20 lg:py-24 bg-[#fdfbf7] border-b border-[#ece6d8]">
+        <section id="about" className="relative py-14 sm:py-20 lg:py-24 bg-[#fdfbf7] border-b border-[#ece6d8] overflow-hidden w-full max-w-full">
             {/* Ambient Background Decorative Glows */}
-            <div className="absolute top-1/4 -left-10 w-96 h-96 bg-[#2d5a27]/6 rounded-full blur-3xl pointer-events-none" />
-            <div className="absolute bottom-10 -right-10 w-96 h-96 bg-[#d4af37]/12 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-1/4 -left-10 w-72 sm:w-96 h-72 sm:h-96 bg-[#2d5a27]/6 rounded-full blur-3xl pointer-events-none max-w-full" />
+            <div className="absolute bottom-10 -right-10 w-72 sm:w-96 h-72 sm:h-96 bg-[#d4af37]/12 rounded-full blur-3xl pointer-events-none max-w-full" />
 
             <div className="max-w-[1380px] mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
@@ -206,7 +206,7 @@ const AboutSection = () => {
 
                         {/* Location / Review Bar */}
                         <div className="mt-4 sm:mt-5">
-                            <div className="p-4 sm:p-4.5 rounded-2xl bg-white border border-[#2d5a27]/15 shadow-md flex items-center justify-between gap-3">
+                            <div className="p-3.5 sm:p-4.5 rounded-2xl bg-white border border-[#2d5a27]/15 shadow-md flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                                 <div className="flex items-center gap-3">
                                     <div className="w-10 h-10 rounded-full bg-[#2d5a27] text-white flex items-center justify-center shrink-0 shadow-xs">
                                         <MapPin className="w-5 h-5 text-[#d4af37]" />
@@ -218,7 +218,7 @@ const AboutSection = () => {
                                         </p>
                                     </div>
                                 </div>
-                                <div className="text-right shrink-0">
+                                <div className="self-start sm:self-auto sm:text-right shrink-0">
                                     <span className="inline-block px-3 py-1.5 rounded-full bg-[#2d5a27]/10 text-[#2d5a27] text-xs sm:text-sm font-bold">
                                         {isSlovenian ? 'Odprto danes' : 'Open Today'}
                                     </span>

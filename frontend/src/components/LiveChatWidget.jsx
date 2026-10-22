@@ -7,7 +7,7 @@ const LiveChatWidget = () => {
     const [messages, setMessages] = useState([
         {
             sender: 'bot',
-            text: 'Pozdravljeni! Dobrodošli v Restavraciji Wilma v Ljubljani. Kako vam lahko danes pomagamo? 😊'
+            text: 'Hello! Welcome to Wilma Restaurant in Ljubljana. How can we assist you today? 😊'
         }
     ]);
 
@@ -38,20 +38,20 @@ const LiveChatWidget = () => {
     };
 
     return (
-        <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
+        <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end pointer-events-auto">
             {/* Chat Box */}
             {isOpen && (
-                <div className="mb-4 w-80 sm:w-96 bg-white rounded-3xl shadow-2xl border border-gray-200 overflow-hidden flex flex-col animate-in fade-in slide-in-from-bottom-5 duration-200">
+                <div className="mb-3 w-[calc(100vw-2rem)] max-w-sm sm:w-96 bg-white rounded-3xl shadow-2xl border border-gray-200 overflow-hidden flex flex-col animate-in fade-in slide-in-from-bottom-5 duration-200">
                     <div className="bg-[#1c241b] text-white p-4 flex items-center justify-between">
                         <div className="flex items-center gap-3">
                             <div className="w-8 h-8 rounded-full bg-[#d4af37] text-[#1c241b] flex items-center justify-center font-bold text-xs">
                                 W
                             </div>
                             <div>
-                                <h4 className="font-bold text-xs">Wilma Asistent (Podpora)</h4>
+                                <h4 className="font-bold text-xs">Wilma Assistant (Live Concierge)</h4>
                                 <span className="text-[10px] text-[#8fa382] flex items-center gap-1">
                                     <span className="w-2 h-2 bg-green-500 rounded-full inline-block animate-pulse"></span>
-                                    <span>Na voljo v živo</span>
+                                    <span>Online &amp; Ready</span>
                                 </span>
                             </div>
                         </div>
@@ -82,16 +82,16 @@ const LiveChatWidget = () => {
                     {/* Direct WhatsApp Option inside chat window */}
                     <div className="px-4 py-2.5 bg-emerald-50/80 border-t border-emerald-100 flex items-center justify-between text-xs">
                         <span className="text-gray-700 font-medium flex items-center gap-1.5 text-[11px]">
-                            <FaWhatsapp className="text-[#25D366] text-base" />
-                            <span>Klepetajte na WhatsAppu:</span>
+                            <FaWhatsapp className="text-[#25D366] text-base shrink-0" />
+                            <span>Chat on WhatsApp:</span>
                         </span>
                         <a
-                            href="https://wa.me/38640791618?text=Pozdravljeni,%20zanima%20me%20ponudba%20v%20Restavraciji%20Wilma"
+                            href="https://wa.me/38640791618?text=Hello,%20I%20have%20an%20inquiry%20about%20Wilma%20Restaurant"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="bg-[#25D366] hover:bg-[#20ba59] text-white font-bold px-3 py-1 rounded-lg text-[10px] transition-colors flex items-center gap-1 shadow-2xs"
                         >
-                            <span>Odpri WhatsApp</span>
+                            <span>Open WhatsApp</span>
                             <i className="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
                         </a>
                     </div>
@@ -103,7 +103,7 @@ const LiveChatWidget = () => {
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
                             onKeyDown={handleKeyDown}
-                            placeholder="Zastavite vprašanje..."
+                            placeholder="Type your question..."
                             className="flex-1 px-3 py-2 rounded-xl border border-gray-200 text-xs focus:outline-none focus:ring-1 focus:ring-[#2d5a27]"
                         />
                         <button
@@ -117,33 +117,33 @@ const LiveChatWidget = () => {
             )}
 
             {/* Triggers Group: WhatsApp (On Top) + Chatbot Trigger (Below) */}
-            <div className="flex flex-col items-end gap-3">
-                {/* Clean Circular WhatsApp Floating Button (Stacked Directly on Top) */}
+            <div className="flex flex-col items-end gap-2.5 sm:gap-3">
+                {/* Clean Circular WhatsApp Floating Button */}
                 <a
-                    href="https://wa.me/38640791618?text=Pozdravljeni,%20zanima%20me%20ponudba%20v%20Restavraciji%20Wilma"
+                    href="https://wa.me/38640791618?text=Hello,%20I%20have%20an%20inquiry%20about%20Wilma%20Restaurant"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-14 h-14 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-full shadow-2xl flex items-center justify-center text-3xl transition-all duration-300 transform hover:scale-110 active:scale-95 group relative cursor-pointer"
+                    className="w-12 h-12 sm:w-14 sm:h-14 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-full shadow-2xl flex items-center justify-center text-2xl sm:text-3xl transition-all duration-300 transform hover:scale-105 active:scale-95 group relative cursor-pointer"
                     aria-label="Chat on WhatsApp"
                     title="WhatsApp (+386 40 791 618)"
                 >
                     <FaWhatsapp className="drop-shadow-sm transition-transform duration-200 group-hover:scale-110" />
-                    <span className="absolute -top-1 -right-1 flex h-3.5 w-3.5">
+                    <span className="absolute -top-0.5 -right-0.5 flex h-3 w-3 sm:h-3.5 sm:w-3.5">
                         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 border-2 border-white"></span>
+                        <span className="relative inline-flex rounded-full h-full w-full bg-emerald-500 border-2 border-white"></span>
                     </span>
                 </a>
 
-                {/* Chatbot Trigger Button (Below) */}
+                {/* Chatbot Trigger Button */}
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="w-14 h-14 bg-[#2d5a27] hover:bg-[#4a7c44] text-white rounded-full shadow-2xl flex items-center justify-center text-2xl transition-all transform hover:scale-110 active:scale-95 relative cursor-pointer"
+                    className="w-12 h-12 sm:w-14 sm:h-14 bg-[#2d5a27] hover:bg-[#4a7c44] text-white rounded-full shadow-2xl flex items-center justify-center text-xl sm:text-2xl transition-all transform hover:scale-105 active:scale-95 relative cursor-pointer"
                     aria-label="Open Live Chat"
-                    title="Wilma Asistent"
+                    title="Wilma Assistant"
                 >
                     <i className={`fa-solid ${isOpen ? 'fa-xmark' : 'fa-headset'}`}></i>
                     {!isOpen && (
-                        <span className="absolute -top-1 -right-1 w-4 h-4 bg-[#d4af37] rounded-full border-2 border-white animate-pulse"></span>
+                        <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-[#d4af37] rounded-full border-2 border-white animate-pulse"></span>
                     )}
                 </button>
             </div>

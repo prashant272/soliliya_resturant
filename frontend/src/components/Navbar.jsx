@@ -241,7 +241,7 @@ const Navbar = ({ onOpenAuth }) => {
                             </button>
                         )}
 
-                        <button
+                        {/* <button
                             onClick={() => setIsCartOpen(!isCartOpen)}
                             className="relative text-gray-800 p-2 cursor-pointer"
                         >
@@ -251,7 +251,7 @@ const Navbar = ({ onOpenAuth }) => {
                                     {cart.length}
                                 </span>
                             )}
-                        </button>
+                        </button> */}
                         <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                             className="text-gray-800 hover:text-black focus:outline-none p-2 cursor-pointer"

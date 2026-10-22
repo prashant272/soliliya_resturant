@@ -105,7 +105,7 @@ const MenuSection = () => {
     }, []);
 
     return (
-        <section id="menu" className="pt-6 sm:pt-8 pb-8 sm:pb-10 bg-[#faf8f4] border-b border-[#ece6d8] text-[#1c241b]">
+        <section id="menu" className="pt-6 sm:pt-8 pb-8 sm:pb-10 bg-[#faf8f4] border-b border-[#ece6d8] text-[#1c241b] overflow-hidden w-full max-w-full">
             <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
                 {/* Header Section */}

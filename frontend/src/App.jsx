@@ -58,7 +58,7 @@ function App() {
 
             {/* Public Routes */}
             <Route path="*" element={
-              <div className="flex flex-col min-h-screen bg-[#fdfbf7] text-[#1e2a1e] font-sans">
+              <div className="flex flex-col min-h-screen bg-[#fdfbf7] text-[#1e2a1e] font-sans w-full max-w-full overflow-x-hidden relative">
                 <Navbar onOpenAuth={() => setIsAuthModalOpen(true)} />
                 <CartDrawer />
                 <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
